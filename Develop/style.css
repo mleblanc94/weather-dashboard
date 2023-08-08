@@ -5,3 +5,60 @@ nav {
     background-image: linear-gradient(to right,blue, #301934);
     color: white;
 }
+
+main {
+    display: flex;
+}
+
+#search-area {
+    width: 23%;
+    padding: 10px;
+}
+
+#search-area h2 {
+    margin-top: 0px;
+}
+
+input {
+    width:97%;
+    margin-bottom: 15px;;
+}
+
+button {
+    text-align: center;
+    width: 100%;
+    background-color: #3366ff;
+    color: white;
+    cursor: pointer;
+}
+
+#search {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #585858;
+}
+
+#weather-area {
+    width: 60%;
+    /* display: none; */
+}
+
+#current-weather {
+    border: 1px solid black;
+    margin: 10px;
+    width: 100%;
+    padding-left: 5px;
+}
+
+#five-day-forecast {
+    width: 101%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.day-to-day {
+    border: 1px black solid;
+    height: 200px;
+    width: 130px;
+    padding: 5px;
+}
