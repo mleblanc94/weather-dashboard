@@ -1,0 +1,7 @@
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right,blue, #301934);
+    color: white;
+}
