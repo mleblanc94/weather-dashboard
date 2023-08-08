@@ -10,7 +10,56 @@
     <nav>
         <h1>Weather Dashboard</h1>
     </nav>
+    <main>
+        <section id="search-area">
+            <div id="search">
+        <h2>Search for a City:</h2>
+        <input type="text" id="user-input" placeholder="Boston">
+        <button id="submit">Search</button>
+    </div>
+        </section>
+        <section id="weather-area">
+            <div id="current-weather">
+                <h1 id="location"></h1>
+                <p>Temp:<span id="temp"></span></p>
+                <p>Wind: <span id="wind"></span>MPH</p>
+                <p>Humidity: <span id="humidity"></span>%</p>
+            </div>
+            <div id="five-day-forecast">
+                <div class="day-to-day">
+                    <h3 id="date-day1"></h3>
+                    <p>Temp:<span id="temp-day1"></span></p>
+                    <p>Wind: <span id="wind-day1"></span>MPH</p>
+                    <p>Humidity: <span id="humidity-day1"></span>%</p>
+                </div>
+                <div class="day-to-day">
+                    <h3 id="date-day2"></h3>
+                    <p>Temp:<span id="temp-day2"></span></p>
+                    <p>Wind: <span id="wind-day2"></span>MPH</p>
+                    <p>Humidity: <span id="humidity-day2"></span>%</p>
+                </div>
+                <div class="day-to-day">
+                    <h3 id="date-day3"></h3>
+                    <p>Temp:<span id="temp-day3"></span></p>
+                    <p>Wind: <span id="wind-day3"></span>MPH</p>
+                    <p>Humidity: <span id="humidity-day3"></span>%</p>
+                </div>
+                <div class="day-to-day">
+                    <h3 id="date-day4"></h3>
+                    <p>Temp:<span id="temp-day4"></span></p>
+                    <p>Wind: <span id="wind-day4"></span>MPH</p>
+                    <p>Humidity: <span id="humidity-day4"></span>%</p>
+                </div>
+                <div class="day-to-day">
+                    <h3 id="date-day5"></h3>
+                    <p>Temp:<span id="temp-day5"></span></p>
+                    <p>Wind: <span id="wind-day5"></span>MPH</p>
+                    <p>Humidity: <span id="humidity-day5"></span>%</p>
+                </div>
+            </div>
+        </section>
+    </main>
     
-    <link rel="stylesheet" href="script.js">
+    <link href="script.js">
 </body>
 </html>
