@@ -9,7 +9,7 @@ async function getWeather() {
      console.log(apiWeather)
      let latitude = apiWeather[0].lat;
      let longitude = apiWeather[0].lon;
-     let weatherApiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&appid=f51d61527316072dc7ef9316b5c61559';
+     let weatherApiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=f51d61527316072dc7ef9316b5c61559';
      try {
         const weatherResponse = await fetch(weatherApiUrl);
         let apiWeatherResponse = await weatherResponse.json();
@@ -17,7 +17,7 @@ async function getWeather() {
         //Assigning weather values to the html elements based off the API response
         document.querySelector("#location-span").innerHTML = apiWeatherResponse.city.name; 
         document.querySelector("#date-span").innerHTML = apiWeatherResponse.list[0].dt_txt.substring(0,10); 
-        document.querySelector("#temp").innerHTML = ((apiWeatherResponse.list[0].main.temp - 273.15) * 1.8 + 32); 
+        document.querySelector("#temp").innerHTML = apiWeatherResponse.list[0].main.temp; 
         console.log(apiWeatherResponse.list[0].main.temp)
      } catch(error) {
         console.log(error);
