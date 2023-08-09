@@ -17,6 +17,8 @@ async function getWeather() {
         //Assigning weather values to the html elements based off the API response
         document.querySelector("#location-span").innerHTML = apiWeatherResponse.city.name; 
         document.querySelector("#date-span").innerHTML = apiWeatherResponse.list[0].dt_txt.substring(0,10); 
+        document.querySelector("#temp").innerHTML = ((apiWeatherResponse.list[0].main.temp - 273.15) * 1.8 + 32); 
+        console.log(apiWeatherResponse.list[0].main.temp)
      } catch(error) {
         console.log(error);
      }
