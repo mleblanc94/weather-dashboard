@@ -2,21 +2,24 @@ let input = document.querySelector("#user-input");
 
 
 async function getWeather() {
-    let apiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+ input.value +'&limit=5&appid=f51d61527316072dc7ef9316b5c61559';
+    let apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+ input.value +'&limit=5&appid=f51d61527316072dc7ef9316b5c61559';
        try {
      const response = await fetch(apiUrl);
      apiWeather = await response.json();
-     resetErrorMessage();
-     displayBox.style.display = 'flex';
-     populateTemperature();
-     atmosphere();
+     console.log(apiWeather)
+     let latitude = apiWeather[0].lat;
+     let longitude = apiWeather[0].lon;
+     let weatherApiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&appid=f51d61527316072dc7ef9316b5c61559';
+     try {
+        const weatherResponse = await fetch(weatherApiUrl);
+        let apiWeatherResponse = await weatherResponse.json();
+        console.log(apiWeatherResponse);
+     } catch(error) {
+        console.log(error);
+     }
   } catch(error) {
-    errorMessage.style.display = 'inline';
-    input.style.marginTop = '7px';
-    errorMessage.innerHTML = "Sorry, please enter a valid city name";
-    displayBox.style.display = 'none';
+    console.log(error)
         }
      }
-
 
 submit.addEventListener('click', getWeather);
