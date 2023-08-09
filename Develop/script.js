@@ -14,6 +14,9 @@ async function getWeather() {
         const weatherResponse = await fetch(weatherApiUrl);
         let apiWeatherResponse = await weatherResponse.json();
         console.log(apiWeatherResponse);
+        //Assigning weather values to the html elements based off the API response
+        document.querySelector("#location-span").innerHTML = apiWeatherResponse.city.name; 
+        document.querySelector("#date-span").innerHTML = apiWeatherResponse.list[0].dt_txt.substring(0,10); 
      } catch(error) {
         console.log(error);
      }
