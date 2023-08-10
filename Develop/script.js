@@ -1,4 +1,11 @@
 let input = document.querySelector("#user-input");
+let symbol1 = document.querySelector("#symbol1");
+let symbol2 = document.querySelector("#symbol2");
+let symbol3 = document.querySelector("#symbol3");
+let symbol4 = document.querySelector("#symbol4");
+let symbol5 = document.querySelector("#symbol5");
+let symbol6 = document.querySelector("#symbol6");
+
 
 
 async function getWeather() {
@@ -13,6 +20,7 @@ async function getWeather() {
      try {
         const weatherResponse = await fetch(weatherApiUrl);
         let apiWeatherResponse = await weatherResponse.json();
+        console.log(apiWeatherResponse);
         document.querySelector("#weather-area").style.display = "block";
         //Assigning weather values to the html elements based off the API response
         //Current Weather block
@@ -21,6 +29,17 @@ async function getWeather() {
         document.querySelector("#temp").innerHTML = apiWeatherResponse.list[0].main.temp; 
         document.querySelector("#wind").innerHTML = apiWeatherResponse.list[0].wind.speed;
         document.querySelector('#humidity').innerHTML = apiWeatherResponse.list[0].main.humidity;
+        if (apiWeatherResponse.list[0].weather[0].description === "overcast clouds") {
+         symbol1.innerHTML = "&#x2601"
+        } else if (apiWeatherResponse.list[0].weather[0].description === "light rain") {
+         symbol1.innerHTML = "&#x1F326"
+        } else if (apiWeatherResponse.list[0].weather[0].description === "scattered clouds") {
+         symbol1.innerHTML = "&#x26C5"
+        } else if (apiWeatherResponse.list[0].weather[0].description === "few clouds") {
+         symbol1.innerHTML = "&#x26C5";
+        } else if (apiWeatherResponse.list[0].weather[0].description === "clear sky") {
+         symbol1.innerHTML = "&#x263C";
+        }
         //Next day forecast
         document.querySelector("#date-day1").innerHTML = apiWeatherResponse.list[8].dt_txt.substring(0,10);
         document.querySelector("#temp-day1").innerHTML = apiWeatherResponse.list[8].main.temp; 
