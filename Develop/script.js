@@ -6,9 +6,11 @@ let symbol4 = document.querySelector("#symbol4");
 let symbol5 = document.querySelector("#symbol5");
 let symbol6 = document.querySelector("#symbol6");
 let searchArea = document.querySelector("#history");
+let submit = document.querySelector("#submit");
 
-async function getWeather() {
-    let apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+ input.value +'&limit=5&appid=f51d61527316072dc7ef9316b5c61559';
+async function getWeather(value) {
+   console.log({value});
+    let apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+ value +'&limit=5&appid=f51d61527316072dc7ef9316b5c61559';
        try {
      const response = await fetch(apiUrl);
      apiWeather = await response.json();
@@ -93,6 +95,11 @@ async function getWeather() {
       searchNode = document.createTextNode(search);
       thisSearch.appendChild(searchNode)
       searchArea.prepend(thisSearch);
+      let history = searchArea.querySelector("h3");
+      console.log({history});
+      history.addEventListener('click', ()=>{
+         getWeather(search);
+      })
    }
 
    function submitTowns() {
@@ -119,6 +126,9 @@ async function getWeather() {
       let search = storedTownArray[i];
       const thisSearch = document.createElement("h3");
       searchNode = document.createTextNode(search);
+      thisSearch.addEventListener('click', ()=>{
+         getWeather(search);
+      })
       thisSearch.appendChild(searchNode)
       searchArea.appendChild(thisSearch);
     }
@@ -126,6 +136,12 @@ async function getWeather() {
    }
 getTowns();
 
-submit.addEventListener('click', getWeather);
+function main() {
+submit.addEventListener('click', ()=>{
+   getWeather(input.value);
+});
 submit.addEventListener('click', addSearchHistory);
 submit.addEventListener('click', submitTowns);
+}
+
+main();
