@@ -1,4 +1,4 @@
-# weather-dashboard
+# Weather Dashboard
 A dashboard that allows a user to see what the weather is in a given area. The application will also save other locations the user has looked up.
 
 ## Description
