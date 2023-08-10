@@ -39,7 +39,7 @@ button {
 
 #weather-area {
     width: 60%;
-    /* display: none; */
+    display: none;
 }
 
 #current-weather {
@@ -61,4 +61,6 @@ button {
     height: 200px;
     width: 130px;
     padding: 5px;
+    color: white;
+    background-color: #28283e;
 }
