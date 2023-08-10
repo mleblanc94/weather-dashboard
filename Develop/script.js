@@ -80,10 +80,10 @@ async function getWeather() {
         document.querySelector('#humidity-day5').innerHTML = apiWeatherResponse.list[39].main.humidity;
         checkSymbol(39, symbol6);
      } catch(error) {
-        console.log(error);
+        alert("Unable to find this location, please try another location");
      }
   } catch(error) {
-    console.log(error)
+   alert("Unable to find this location, please try another location");
         }
      }
 
@@ -95,5 +95,37 @@ async function getWeather() {
       searchArea.prepend(thisSearch);
    }
 
+   function submitTowns() {
+      if (localStorage.length === 0) {
+          let storedTowns = [];
+          let town = input.value;
+          storedTowns.unshift(town);
+          let townsString = JSON.stringify(storedTowns);
+          localStorage.setItem('towns', townsString);
+      } else {
+          let storedTownsString = localStorage.getItem('towns');
+          let storedTownArray = JSON.parse(storedTownsString);
+          let town = input.value;
+          storedTownArray.unshift(town);
+          let storedTownString = JSON.stringify(storedTownArray);
+          localStorage.setItem('towns', storedTownString);
+      }
+   }
+   function getTowns() {
+   let storedTownsString = localStorage.getItem('towns');
+    let storedTownArray = JSON.parse(storedTownsString);
+      if (localStorage.length > 0) {
+    for (let i = 0; i < storedTownArray.length; i++) {
+      let search = storedTownArray[i];
+      const thisSearch = document.createElement("h3");
+      searchNode = document.createTextNode(search);
+      thisSearch.appendChild(searchNode)
+      searchArea.appendChild(thisSearch);
+    }
+   }
+   }
+getTowns();
+
 submit.addEventListener('click', getWeather);
 submit.addEventListener('click', addSearchHistory);
+submit.addEventListener('click', submitTowns);
