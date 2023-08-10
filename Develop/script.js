@@ -5,6 +5,7 @@ let symbol3 = document.querySelector("#symbol3");
 let symbol4 = document.querySelector("#symbol4");
 let symbol5 = document.querySelector("#symbol5");
 let symbol6 = document.querySelector("#symbol6");
+let searchArea = document.querySelector("#history");
 
 async function getWeather() {
     let apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+ input.value +'&limit=5&appid=f51d61527316072dc7ef9316b5c61559';
@@ -19,6 +20,7 @@ async function getWeather() {
         const weatherResponse = await fetch(weatherApiUrl);
         let apiWeatherResponse = await weatherResponse.json();
         console.log(apiWeatherResponse);
+        input.value = "";
         //Function to add symbols based off of the weather in a given location
         function checkSymbol(i, symbol) {
          if (apiWeatherResponse.list[i].weather[0].description === "overcast clouds") {
@@ -37,6 +39,7 @@ async function getWeather() {
             symbol.innerHTML = "&#x1F327";
            }
       }
+      
         document.querySelector("#weather-area").style.display = "block";
         //Assigning weather values to the html elements based off the API response
         //Current Weather block
@@ -84,4 +87,13 @@ async function getWeather() {
         }
      }
 
+     function addSearchHistory() {
+      let search = input.value;
+      const thisSearch = document.createElement("h3");
+      searchNode = document.createTextNode(search);
+      thisSearch.appendChild(searchNode)
+      searchArea.prepend(thisSearch);
+   }
+
 submit.addEventListener('click', getWeather);
+submit.addEventListener('click', addSearchHistory);
