@@ -91,12 +91,21 @@ async function getWeather(value) {
 
      function addSearchHistory() {
       let search = input.value;
+      const divTag = document.createElement("div")
       const thisSearch = document.createElement("h3");
       searchNode = document.createTextNode(search);
       thisSearch.appendChild(searchNode)
-      searchArea.prepend(thisSearch);
+      divTag.appendChild(thisSearch)
+      searchArea.prepend(divTag);
+      thisSearch.style.margin = "5px 0px"
+      divTag.style.display = "flex";
+      divTag.style.justifyContent = "center";
+      divTag.style.alignItems = "center";
+      divTag.style.backgroundColor = "gray";
+      divTag.style.margin = "15px";
+      divTag.style.cursor = "pointer";
+      divTag.style.borderRadius = "5px";
       let history = searchArea.querySelector("h3");
-      console.log({history});
       history.addEventListener('click', ()=>{
          getWeather(search);
       })
@@ -124,13 +133,23 @@ async function getWeather(value) {
       if (localStorage.length > 0) {
     for (let i = 0; i < storedTownArray.length; i++) {
       let search = storedTownArray[i];
+      const divTag = document.createElement("div")
       const thisSearch = document.createElement("h3");
       searchNode = document.createTextNode(search);
       thisSearch.addEventListener('click', ()=>{
          getWeather(search);
       })
       thisSearch.appendChild(searchNode)
-      searchArea.appendChild(thisSearch);
+      divTag.appendChild(thisSearch)
+      searchArea.appendChild(divTag);
+      thisSearch.style.margin = "5px 0px"
+      divTag.style.display = "flex";
+      divTag.style.justifyContent = "center";
+      divTag.style.alignItems = "center";
+      divTag.style.backgroundColor = "gray";
+      divTag.style.margin = "15px";
+      divTag.style.cursor = "pointer";
+      divTag.style.borderRadius = "5px";
     }
    }
    }
