@@ -1,3 +1,4 @@
+//Global Variables
 let input = document.querySelector("#user-input");
 let symbol1 = document.querySelector("#symbol1");
 let symbol2 = document.querySelector("#symbol2");
@@ -8,20 +9,18 @@ let symbol6 = document.querySelector("#symbol6");
 let searchArea = document.querySelector("#history");
 let submit = document.querySelector("#submit");
 
+//The function that allows us to get the weather for the given location
 async function getWeather(value) {
-   console.log({value});
     let apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+ value +'&limit=5&appid=f51d61527316072dc7ef9316b5c61559';
        try {
      const response = await fetch(apiUrl);
      apiWeather = await response.json();
-     console.log(apiWeather)
      let latitude = apiWeather[0].lat;
      let longitude = apiWeather[0].lon;
      let weatherApiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=f51d61527316072dc7ef9316b5c61559';
      try {
         const weatherResponse = await fetch(weatherApiUrl);
         let apiWeatherResponse = await weatherResponse.json();
-        console.log(apiWeatherResponse);
         input.value = "";
         //Function to add symbols based off of the weather in a given location
         function checkSymbol(i, symbol) {
@@ -41,7 +40,7 @@ async function getWeather(value) {
             symbol.innerHTML = "&#x1F327";
            }
       }
-      
+
         document.querySelector("#weather-area").style.display = "block";
         //Assigning weather values to the html elements based off the API response
         //Current Weather block
@@ -89,6 +88,7 @@ async function getWeather(value) {
         }
      }
 
+     //Adds the previously searched for Cities/Towns to the search history section
      function addSearchHistory() {
       let search = input.value;
       const divTag = document.createElement("div")
@@ -111,6 +111,8 @@ async function getWeather(value) {
       })
    }
 
+   //Adds the towns to the local storage in String form, or sees if there is already items
+   //in local storage and adds to them
    function submitTowns() {
       if (localStorage.length === 0) {
           let storedTowns = [];
@@ -127,6 +129,7 @@ async function getWeather(value) {
           localStorage.setItem('towns', storedTownString);
       }
    }
+   //Retrieves the cities and towns from the local storage and renders it on the page
    function getTowns() {
    let storedTownsString = localStorage.getItem('towns');
     let storedTownArray = JSON.parse(storedTownsString);
@@ -155,10 +158,12 @@ async function getWeather(value) {
    }
 getTowns();
 
+//Wraps the event listener in a function with an anonymous so that we can pass parameters to it
 function main() {
 submit.addEventListener('click', ()=>{
    getWeather(input.value);
 });
+
 submit.addEventListener('click', addSearchHistory);
 submit.addEventListener('click', submitTowns);
 }
